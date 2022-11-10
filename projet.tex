@@ -76,11 +76,34 @@ Soit $\mathcal{L} = (\mathcal{F} ,\mathcal{P} ,\mathcal{C} ,\mathcal{Q} )$
 Termes : \\
 $t := x|f|l|c|b|m(x)$ \\
 Formules : \\
-$A := \bot|\top|\neg A|A\vee A|A\wedge A|A \rightarrow A$
+$A := \forall i \in\N, S_i(t)|RD_i(t)|RG_i(t)|P_i|G_i|M(t,t)|(t=t)| \bot|\top|\neg A|A\vee A|A\wedge A|A \rightarrow A$
 
 \subsection{Notations}
 $ a \leftrightarrow b = (a \rightarrow b) \wedge  (b \rightarrow a)$
+\subsection{Interprétation}
+Domaine d'Interprétation : $D = \{f,l,c,b\}$
+\begin{itemize}
+  \item $\forall x,y , M(x,y) = \neg(x=f) \wedge \neg(x=b) \wedge (x=l \to y=c) \wedge (x=c \to y=b)$
+  \item pour $t$ un entier, $S_t(f) = \top $
+  \item pour $t$ un entier, $S_t(l) = \top $
+  \item[$ \to $] État initial :
+    \begin{itemize}
+      \item[$ \to $] Rive Gauche :
+      \item $ RG_0(f) = \top $
+      \item $ RG_0(l) = \top $
+      \item $ RG_0(c) = \top $
+      \item $ RG_0(b) = \top $
+      \item[$ \to $] Rive Droite
+      \item $ RD_0(f) = \bot $
+      \item $ RD_0(l) = \bot $
+      \item $ RD_0(c) = \bot $
+      \item $ RD_0(b) = \bot $
+      \item[$ \to $] Sécurité
+      \item $ S_0(c) = \top$
+      \item $ S_0(b) = \top$
+    \end{itemize}
 
+\end{itemize}
 
 
 \subsection{Axiomatisation}
@@ -107,41 +130,27 @@ Soit A, B et C des variables propositionnelles.
 \newpage
 \subsection{Axiomes}
 \begin{itemize}
-  \item \small $a_1:= \forall x,S_t(x) \leftrightarrow (\forall y, \neg(m(y)=x))\wedge(\exists y , (m(y)=x) \wedge ((RG_t(x)\wedge(RD_t(y)\vee RG_t(f))) \vee ((RD_t(x)\wedge(RG_t(y)\vee RD_t(f))))) $
-  \item $a_2:= (G \to \neg P)$
-  \item $a_3:= P \leftrightarrow \exists t,x, \neg S_t(x)$
-  \item $a_4:= G \leftrightarrow \exists t, RD_t(l) \wedge RD_t(f) \wedge RD_t(c) \wedge RD_t(b) \leftrightarrow \exists t, \forall x, RD_t(x)$
-
+  \item \small On définit une infinité d'axiome représentant chacun l'état de sécurité d'une entité à un moment t donné:
+  \begin{align*}
+    a_1:= \forall x,S_t(x) & \leftrightarrow  (\forall y, \neg M(y,x))\\ &\vee (\exists y , M(y,x) \wedge ((RG_t(x)\wedge RD_t(y)) \vee (RD_t(x)\wedge RG_t(y)))\\
+    &\vee (RG_t(x) \wedge RG_t(f))\\
+    &\vee (RD_t(x) \wedge RD_t(f))
+  \end{align*}
+  \item On définit le fait que l'on ne puisse pas avoir un gain et une perte en même temps\\
+  $a_2:= (G_t \to \neg P_t)$
+  \item On définit ce qui rend un chemin perdant, c'est à dire avoir perdu à l'itération précédente ou avoir une entité qui n'est pas en sécurité à l'itération courante\\
+  $a_3:= P_t \leftrightarrow \exists x, \neg S_t(x) \vee P_{(t-1)}$
+  \item On définit un chemin gagnant par le fait qu'a un moment on aie les quatres entités sur la rive droite\\
+  $a_4:= G_t \leftrightarrow RD_t(l) \wedge RD_t(f) \wedge RD_t(c) \wedge RD_t(b) \leftrightarrow  \forall x, RD_t(x)$
+  \item On définit une infinité d'axiome représentant l'impossibilité d'etre sur deux rives en même temps:\\
+  $a_5 := \forall x ,RG_t(x) \leftrightarrow \neg RD_t(x)$
+  \item On définit la variation de population des rives à chaque voyage\\
+  pour t=2n ,
 \end{itemize}
 
 \section{Problème et étude}
 \subsection{Problème}
-Interprétation :
-\begin{itemize}
-  \item $m(f) = \emptyset $
-  \item $m(l) = \{c\}$
-  \item $m(c) = \{b\}$
-  \item $m(b) = \emptyset $
-  \item $\forall t, S_t(f) = \top $
-  \item $\forall t, S_t(l) = \top $
-  \item[$ \to $] État initial :
-    \begin{itemize}
-      \item[$ \to $] Rive Gauche :
-      \item $ RG_0(f) = \top $
-      \item $ RG_0(l) = \top $
-      \item $ RG_0(c) = \top $
-      \item $ RG_0(b) = \top $
-      \item[$ \to $] Rive Droite
-      \item $ RD_0(f) = \bot $
-      \item $ RD_0(l) = \bot $
-      \item $ RD_0(c) = \bot $
-      \item $ RD_0(b) = \bot $
-      \item[$ \to $] Sécurité
-      \item $ S_0(c) = \top$
-      \item $ S_0(b) = \top$
-    \end{itemize}
 
-\end{itemize}
 
 \section*{Graphe des chemins possibles }
 
@@ -228,12 +237,25 @@ Donc par interpretation des états initiaux:
 
 \subparagraph*{Pour t = 0:}
 on a $(RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b)) \wedge (\neg RD_0(c) \wedge \neg RD_0(f) \wedge \neg RD_0(l) \wedge \neg RD_0(b))\\ $
-L'axiome 3 n'est pas vérifié car :\\
+$\leftrightarrow RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b)$ par axiome 5\\
+
+or
 \begin{align*}
-  RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) &\rightarrow \forall x, S_0(x) \text{ par axiome 1} \\
-  &\rightarrow P = \bot
+  RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) &
+  \leftrightarrow RG_0(f) \wedge (RG_0(f) \wedge RG_0(c) \wedge RG_0(b) \wedge RG_0(l))\\
+  &\leftrightarrow [RG_0(f) \wedge RG_0(f)] \wedge [RG_0(f) \wedge RG_0(c)] \wedge [RG_0(f) \wedge RG_0(b)] \wedge [RG_0(f) \wedge RG_0(l)]\\
+  &\leftrightarrow \forall x, RG_0(f) \wedge RG_0(x)\\
+  &\leftrightarrow \forall x, S_0(x) \text{ par axiome 1}\\
+  &\leftrightarrow P_0 = \bot \text{ par axiome 3}
 \end{align*}
-L'axiome 4 n'est pas vérifié car $\exists x , RG_0(x)$ par exemple le loup, donc $G = \bot$ \\
+\begin{align*}
+  RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) &
+  \leftrightarrow RG_0(f) \wedge (RG_0(f) \wedge RG_0(c) \wedge RG_0(b) \wedge RG_0(l))\\
+  &\rightarrow \exists x , RG_0(x)\\
+  &\leftrightarrow \exists x, \neg RD_0(x) \text{ par axiome 5}\\
+  &\leftrightarrow \neg (\forall x, RD_0(x))\\
+  &\leftrightarrow G = \bot \text{ par axiome 4} \\
+\end{align*}
 Donc le jeu peut continuer
 
 \subparagraph*{Pour t = 1:}
@@ -249,7 +271,7 @@ Démontrons maintenant la condition qui fait d'un chemin une défaite
 \begin{align*}
     \exists z,y, (RG_1(z) \wedge RG_1(y)) \wedge (m(z) =y \vee m(y) =z)\\
     &\rightarrow \neg S_1(z) \vee \neg S_1(y)\text{par axiome 1}\\
-    &\rightarrow P = \top \text{Par axiome 3}
+    &
 \end{align*}
 
 Montrons le maintenant pour les cas de notre étude\\
