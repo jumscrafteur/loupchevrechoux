@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage{tikz}
 \usepackage{fullpage}
-\usepackage{amsmath}
+\usepackage{amsmath,amsfonts,amssymb,stmaryrd}
 
 \title{Projet de Logique: Loup Chèvre Choux}
 \author{Waxin Alban, Le Meur Quentin, Laurin Guillaume, Sansané Hugo, Said Yacine}
@@ -11,6 +11,14 @@
 \setlength{\textwidth}{18cm}
 \setlength{\oddsidemargin}{-1.5cm}
 \setlength{\evensidemargin}{50cm}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\M}{\mathcal{M}}
 
 
 \begin{document}
@@ -43,20 +51,15 @@ Nous utiliserons des fonctions constantes pour modéliser nos entités et une fo
   \item $l$ : pour l’entité Loup
   \item $c$ : pour l’entité Chèvre
   \item $b$ : pour l’entité choux
-  \item $m(x)$ : qui est mangé par x
 \end{itemize}
-Nous utiliserons également deux prédicats afin de modéliser l’emplacement de nous entités :
+Nous utiliserons une infinité de prédicats représentant trois informations à un moment t donné
 \begin{itemize}
-  \item $RG(x)$ : x est sur la rive gauche
-  \item $RD(x)$ : x est sur la rive droite
-  \item $S(x)$ : x est en sécurité
+  \item $RG_t(x)$ : x est sur la rive gauche a l’itération t
+  \item $RD_t(x)$ : x est sur la rive droite a l’itération t
+  \item $S_t(x)$ : x est en sécurité a l’itération t
 \end{itemize}
-Afin de prendre en compre l'aspect temporel de notre problème nous utilisons l'indice i pour preciser l'iteration du prédicat
-\begin{itemize}
-  \item $RG_i(x)$ : x est sur la rive gauche a l’itération i
-  \item $RD_i(x)$ : x est sur la rive droite a l’itération i
-  \item $S_i(x)$ : x est en sécurité a l’itération i
-\end{itemize}
+Ainsi qu'un prédicat réprésentant la situation prédateur proie :
+$M(x,y)$ : x mange y\\
 Le bateau ne sera pas modélisé car il ne représente que la transition entre deux itérations
 \subsection{Langage}
 Nous avons décider de choisir une logique du Premier Ordre, car elle permet de décrire les personnages
@@ -64,8 +67,8 @@ Nous avons décider de choisir une logique du Premier Ordre, car elle permet de 
 \\
 Soit $\mathcal{L} = (\mathcal{F} ,\mathcal{P} ,\mathcal{C} ,\mathcal{Q} )$
 \begin{itemize}
-  \item $ \mathcal{F} := \{(f,0),(l,0),(c,0),(b,0),(m,0)\}$
-  \item $ \mathcal{P} := \{(S_i,1),(RG,1),(RD,1),(P,0),(G,0)\} $
+  \item $ \mathcal{F} := \{(f,0),(l,0),(c,0),(b,0)\}$
+  \item $ \mathcal{P} := \{\forall i \in \N,(S_i,1),(RG_i,1),(RD_i,1),(P,0),(G,0)(M,2)\} $
   \item $ \mathcal{C} := \{(\bot , 0),(\top , 0),(\neg , 1), (\vee , 2), (\wedge , 2), (\rightarrow , 2)\}$
   \item $ \mathcal{Q} := \{\exists, \forall \}$
 \end{itemize}
@@ -227,8 +230,8 @@ Donc par interpretation des états initiaux:
 on a $(RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b)) \wedge (\neg RD_0(c) \wedge \neg RD_0(f) \wedge \neg RD_0(l) \wedge \neg RD_0(b))\\ $
 L'axiome 3 n'est pas vérifié car :\\
 \begin{align*}
-  RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) & \rightarrow \forall x, S_0(x) \text{ par axiome 1} \\
-                                                       & \rightarrow P = \bot
+  RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) &\rightarrow \forall x, S_0(x) \text{ par axiome 1} \\
+  &\rightarrow P = \bot
 \end{align*}
 L'axiome 4 n'est pas vérifié car $\exists x , RG_0(x)$ par exemple le loup, donc $G = \bot$ \\
 Donc le jeu peut continuer
@@ -244,9 +247,9 @@ $(\forall y , \neg(x = y \vee y = f) \rightarrow RG_1(y)) \wedge (RD_1(x) \wedge
 Démontrons maintenant la condition qui fait d'un chemin une défaite
 
 \begin{align*}
-  \exists z,y, (RG_1(z) \wedge RG_1(y)) \wedge (m(z) =y \vee m(y) =z) \\
-   & \rightarrow \neg S_1(z) \vee \neg S_1(y)\text{par axiome 1}      \\
-   & \rightarrow P = \top \text{Par axiome 3}
+    \exists z,y, (RG_1(z) \wedge RG_1(y)) \wedge (m(z) =y \vee m(y) =z)\\
+    &\rightarrow \neg S_1(z) \vee \neg S_1(y)\text{par axiome 1}\\
+    &\rightarrow P = \top \text{Par axiome 3}
 \end{align*}
 
 Montrons le maintenant pour les cas de notre étude\\
