@@ -83,9 +83,8 @@ $ a \leftrightarrow b = (a \rightarrow b) \wedge  (b \rightarrow a)$
 \subsection{Interprétation}
 Domaine d'Interprétation : $D = \{f,l,c,b\}$
 \begin{itemize}
-  \item $\forall x,y , M(x,y) = \neg(x=f) \wedge \neg(x=b) \wedge (x=l \to y=c) \wedge (x=c \to y=b)$
-  \item pour $t$ un entier, $S_t(f) = \top $
-  \item pour $t$ un entier, $S_t(l) = \top $
+  \item $\forall x,y , M(x,y) = \neg(x=f) \wedge \neg(x=b) \wedge (x=l \leftrightarrow y=c) \wedge (x=c \leftrightarrow y=b)$
+  \item $\forall x , S_t(x) = (RG_t(x) \to (\forall y , RG_t(y) \to \neg M(y,x) )) \wedge (RD_t(x) \to (\forall y , RD_t(y) \to \neg M(y,x) )) $
   \item[$ \to $] État initial :
     \begin{itemize}
       \item[$ \to $] Rive Gauche :
@@ -98,9 +97,6 @@ Domaine d'Interprétation : $D = \{f,l,c,b\}$
       \item $ RD_0(l) = \bot $
       \item $ RD_0(c) = \bot $
       \item $ RD_0(b) = \bot $
-      \item[$ \to $] Sécurité
-      \item $ S_0(c) = \top$
-      \item $ S_0(b) = \top$
     \end{itemize}
 
 \end{itemize}
@@ -148,25 +144,28 @@ Soit A, B et C des variables propositionnelles.
 \subsection{Axiomes}
 \begin{itemize}
   \item \small On définit une infinité d'axiome représentant chacun l'état de sécurité d'une entité à un moment t donné:
-  \begin{align*}
-    a_1:= \forall x,S_t(x) & \leftrightarrow  (\forall y, \neg M(y,x))\\ &\vee (\exists y , M(y,x) \wedge ((RG_t(x)\wedge RD_t(y)) \vee (RD_t(x)\wedge RG_t(y)))\\
-    &\vee (RG_t(x) \wedge RG_t(f))\\
-    &\vee (RD_t(x) \wedge RD_t(f))
-  \end{align*}
+        \begin{align*}
+          a_1:= \forall x,S_t(x) & \leftrightarrow  (\forall y, \neg M(y,x)) \\ &\vee (\exists y , M(y,x) \wedge ((RG_t(x)\wedge RD_t(y)) \vee (RD_t(x)\wedge RG_t(y)))\\
+                                 & \vee (RG_t(x) \wedge RG_t(f))             \\
+                                 & \vee (RD_t(x) \wedge RD_t(f))
+        \end{align*}
   \item On définit le fait que l'on ne puisse pas avoir un gain et une perte en même temps\\
-  $a_2:= (G_t \to \neg P_t)$
+        $a_2:= (G_t \to \neg P_t)$
   \item On définit ce qui rend un chemin perdant, c'est à dire avoir perdu à l'itération précédente ou avoir une entité qui n'est pas en sécurité à l'itération courante\\
-  $a_3:= P_t \leftrightarrow \exists x, \neg S_t(x) \vee P_{(t-1)}$
+        $a_3:= P_t \leftrightarrow \exists x, \neg S_t(x) \vee P_{(t-1)}$
   \item On définit un chemin gagnant par le fait qu'a un moment on aie les quatres entités sur la rive droite\\
-  $a_4:= G_t \leftrightarrow RD_t(l) \wedge RD_t(f) \wedge RD_t(c) \wedge RD_t(b) \leftrightarrow  \forall x, RD_t(x)$
+        $a_4:= G_t \leftrightarrow RD_t(l) \wedge RD_t(f) \wedge RD_t(c) \wedge RD_t(b) \leftrightarrow  \forall x, RD_t(x)$
   \item On définit une infinité d'axiome représentant l'impossibilité d'etre sur deux rives en même temps:\\
   $a_5 := \forall x ,RG_t(x) \leftrightarrow \neg RD_t(x)$
+  \item Le Loup et le fermier n'ont pas de pédateurs ils sont donc tout le temps en sécurité\\
+        $a_6 := S_t(f) \wedge S_t(l)$
   \item On définit les changements induit par un voyage de la rive gauche vers la rive droite\\
   Soit $x$ l'entité qui change de bord dans cet itération (si fermier seul alors $x =f$)\\
   pour $a_7:= t=2n+1, (\forall y, RD_{t-1}(y) \to RD_{t}(y)) \wedge (\forall z,(RG_{t-1}(z)) \wedge \neg(x=z \vee z=f)) \rightarrow RG_t(z)) \wedge RD_t(f) \wedge RD_t(x)$,\\
   \item On définit les changements induit par un voyage de la rive droite vers la rive gauche\\
   Soit $x$ l'entité qui change de bord dans cet itération (si fermier seul alors $x =f$)\\
   pour $a_8 := t=2n, (\forall y, RG_{t-1}(y) \to RG_{t}(y)) \wedge (\forall z,(RD_{t-1}(z)) \wedge \neg(x=z \vee z=f)) \rightarrow RD_t(z)) \wedge RG_t(f) \wedge RG_t(x)$,\\
+
 \end{itemize}
 
 \section{Problème et étude}
@@ -263,11 +262,19 @@ $\leftrightarrow RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b)$ par axiom
 or
 \begin{align*}
   RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) &
-  \leftrightarrow RG_0(f) \wedge (RG_0(f) \wedge RG_0(c) \wedge RG_0(b) \wedge RG_0(l))\\
-  &\rightarrow \exists x , RG_0(x)\\
-  &\leftrightarrow \exists x, \neg RD_0(x) \text{ par axiome 5}\\
-  &\leftrightarrow \neg (\forall x, RD_0(x))\\
-  &\leftrightarrow G = \bot \text{ par axiome 4} \\
+  \leftrightarrow RG_0(f) \wedge (RG_0(f) \wedge RG_0(c) \wedge RG_0(b) \wedge RG_0(l))                                                                                                           \\
+                                                       & \leftrightarrow [RG_0(f) \wedge RG_0(f)] \wedge [RG_0(f) \wedge RG_0(c)] \wedge [RG_0(f) \wedge RG_0(b)] \wedge [RG_0(f) \wedge RG_0(l)] \\
+                                                       & \leftrightarrow \forall x, RG_0(f) \wedge RG_0(x)                                                                                        \\
+                                                       & \leftrightarrow \forall x, S_0(x) \text{ par axiome 1}                                                                                   \\
+                                                       & \leftrightarrow P_0 = \bot \text{ par axiome 3}
+\end{align*}
+\begin{align*}
+  RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) &
+  \leftrightarrow RG_0(f) \wedge (RG_0(f) \wedge RG_0(c) \wedge RG_0(b) \wedge RG_0(l))                               \\
+                                                       & \rightarrow \exists x , RG_0(x)                              \\
+                                                       & \leftrightarrow \exists x, \neg RD_0(x) \text{ par axiome 5} \\
+                                                       & \leftrightarrow \neg (\forall x, RD_0(x))                    \\
+                                                       & \leftrightarrow G = \bot \text{ par axiome 4}                \\
 \end{align*}
 Donc le jeu peut continuer
 
