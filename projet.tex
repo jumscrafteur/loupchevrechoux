@@ -161,8 +161,12 @@ Soit A, B et C des variables propositionnelles.
   $a_4:= G_t \leftrightarrow RD_t(l) \wedge RD_t(f) \wedge RD_t(c) \wedge RD_t(b) \leftrightarrow  \forall x, RD_t(x)$
   \item On définit une infinité d'axiome représentant l'impossibilité d'etre sur deux rives en même temps:\\
   $a_5 := \forall x ,RG_t(x) \leftrightarrow \neg RD_t(x)$
-  \item On définit la variation de population des rives à chaque voyage\\
-  pour t=2n ,
+  \item On définit les changements induit par un voyage de la rive gauche vers la rive droite\\
+  Soit $x$ l'entité qui change de bord dans cet itération (si fermier seul alors $x =f$)\\
+  pour $a_7:= t=2n+1, (\forall y, RD_{t-1}(y) \to RD_{t}(y)) \wedge (\forall z,(RG_{t-1}(z)) \wedge \neg(x=z \vee z=f)) \rightarrow RG_t(z)) \wedge RD_t(f) \wedge RD_t(x)$,\\
+  \item On définit les changements induit par un voyage de la rive droite vers la rive gauche\\
+  Soit $x$ l'entité qui change de bord dans cet itération (si fermier seul alors $x =f$)\\
+  pour $a_8 := t=2n, (\forall y, RG_{t-1}(y) \to RG_{t}(y)) \wedge (\forall z,(RD_{t-1}(z)) \wedge \neg(x=z \vee z=f)) \rightarrow RD_t(z)) \wedge RG_t(f) \wedge RG_t(x)$,\\
 \end{itemize}
 
 \section{Problème et étude}
