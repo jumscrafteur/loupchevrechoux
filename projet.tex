@@ -253,6 +253,7 @@ Soit A, B et C des variables propositionnelles.
 
 \section*{Preuve des chemins gagnants}
 
+Dans cette étude une fois que $P_t = \top$ on considère la suite du chemin comme nulle
 Donc par interpretation des états initiaux:
 
 \subparagraph*{Pour t = 0:}
@@ -284,14 +285,43 @@ Pour cette itération il existe quatre chemins possible
 
 Dénotons la structure d'un voyage:\\
 Soit x l'élément qui part avec le fermier (f)\\
-la situation se traduit alors par :\\
-$(\forall y , \neg(x = y \vee y = f) \rightarrow RG_1(y)) \wedge (RD_1(x) \wedge RD_1(f))$
-Démontrons maintenant la condition qui fait d'un chemin une défaite
+$t$ étant égal à 1 alors $t$ est impair.\\
+Par application de l'axiome $a_7$ on a
+\begin{align*}
+  (\forall y, RD_{0}(y) \to RD_{1}(y)) \wedge (\forall z,(RG_{0}(z)) \wedge \neg(x=z \vee z=f)) \rightarrow RG_1(z)) \wedge RD_1(f) \wedge RD_1(x)
+\end{align*}
+il ya donc 4 cas possibles:\\
+Déterminons les conditions qui mène à $P_1 = \top$ (1)
+\begin{align*}
+  \exists y,z, (M(y,z)\wedge (RG_1(y)\wedge RG_1(z)) & \to \neg(\forall w, \neg M(w,z)) \vee \neg (\exists w , M(w,z) \wedge ((RG_t(z)\wedge RD_t(w)) \vee \neg (RD_t(z)\wedge RG_t(w)))\\
+  & \leftrightarrow \neg S_1(z) \text{ par axiome 1}\\
+  & \leftrightarrow P_1 \text{ par axiome 3}
+\end{align*}
 
 Montrons le maintenant pour les cas de notre étude\\
 Pour $x=l$
+
+\begin{align*}
+  (\forall y, RD_{0}(y) \to RD_{1}(y)) \wedge (\forall z,(RG_{0}(z)) \wedge \neg(x=z \vee z=f)) &\rightarrow RG_1(c)) \wedge RD_1(f) \wedge RD_1(l) \wedge RG_1(b)\\
+\end{align*}
+
+or on a $RG_1(c) \wedge RG_1(b)$ et par interprétation de $M(x,y), M(c,b) = \top$.\\
+Donc cette configuration vérifie (1)\\
+Donc par équivalence $P_1 = \top$
+
+De manière analogue on démontre que $x=b$ et $x=f$ menent à $P_1 = \top$
+
 on a alors $RG(c)\wedge RG(b) \wedge RD(f) \wedge RD(l)$\\
 or $(m(c)=b) \wedge RD(f) \rightarrow \neg S_1(b) \rightarrow P = \top$
+
+
+
+Si \\
+on a alors $RG_1(y)\wedge RG_1(z) \wedge RD_1(f) \wedge RD_1(w)$ avec $\neg(w=x) \wedge \neg(w=y)\wedge (w=z)$\\
+or comme M(y,z) on a d'après $a_1$:\\
+$((\exists y,M(y,z)) \wedge  \neg(\exists y , M(y,z) \wedge ((RG_1(x)\wedge RD_1(y))) \wedge \neg(RD_1(x)\wedge RG_1(y)))) \rightarrow \neg S_1(x)$\\
+D'après $a_3$ on a ainsi $(S_1(x) \wedge \neg P_0) \rightarrow P_1$
+Ainsi, comme $P_1 = \top$ ce chemin mêne à une défaite.\\
 
 
 
