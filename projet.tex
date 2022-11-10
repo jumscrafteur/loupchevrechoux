@@ -85,25 +85,42 @@ $ a \leftrightarrow b = (a \rightarrow b) \wedge  (b \rightarrow a)$
 
 \subsection{Axiomatisation}
 Soit A, B et C des variables propositionnelles.
-\begin{enumerate}
-  \item $ (A \wedge A) \leftrightarrow  A$ : idempotence
-  \item $ (A \vee A) \leftrightarrow  A$ : idempotence
-  \item $ (A \wedge B) \leftrightarrow  (B \wedge A)$ : commutativité
-  \item $ (A \vee B) \leftrightarrow  (B \vee A)$ : commutativité
-  \item $ (A \wedge (B \wedge C)) \leftrightarrow  ((A \wedge B) \wedge C)$ : associativité
-  \item $ (A \vee (B \vee C)) \leftrightarrow  ((A \vee B) \vee C)$ : associativité
-  \item $ ((A \wedge (B \vee C)) \leftrightarrow ((A \wedge B) \vee (A \wedge C)))$ : distributivité
-  \item $ ((A \vee (B \wedge C)) \leftrightarrow ((A \vee B) \wedge (A \vee C))) $ : distributivité
-  \item $ (A \wedge (A \vee B)) \leftrightarrow  A$ : absorption
-  \item $ (A \vee (A \wedge B)) \leftrightarrow  A$ : absorption
-  \item $ \neg (A \vee B) \leftrightarrow \neg A \wedge \neg B$ : lois de de Morgan
-  \item $ \neg (A \wedge B) \leftrightarrow \neg A \vee \neg B$ : lois de de Morgan
-  \item $ A \wedge \top \leftrightarrow A$
-  \item $ A \vee \bot \leftrightarrow A$
-  \item $ A \wedge \bot \leftrightarrow \bot$
-  \item $ A \vee \top \leftrightarrow \top$
-  \item $ (A \rightarrow B) \leftrightarrow (\neg A \rightarrow \neg B)$ : contraposée
-\end{enumerate}
+% \begin{enumerate}
+%   \item $ (A \wedge A) \leftrightarrow  A$ : idempotence
+%   \item $ (A \vee A) \leftrightarrow  A$ : idempotence
+%   \item $ (A \wedge B) \leftrightarrow  (B \wedge A)$ : commutativité
+%   \item $ (A \vee B) \leftrightarrow  (B \vee A)$ : commutativité
+%   \item $ (A \wedge (B \wedge C)) \leftrightarrow  ((A \wedge B) \wedge C)$ : associativité
+%   \item $ (A \vee (B \vee C)) \leftrightarrow  ((A \vee B) \vee C)$ : associativité
+%   \item $ ((A \wedge (B \vee C)) \leftrightarrow ((A \wedge B) \vee (A \wedge C)))$ : distributivité
+%   \item $ ((A \vee (B \wedge C)) \leftrightarrow ((A \vee B) \wedge (A \vee C))) $ : distributivité
+%   \item $ (A \wedge (A \vee B)) \leftrightarrow  A$ : absorption
+%   \item $ (A \vee (A \wedge B)) \leftrightarrow  A$ : absorption
+%   \item $ \neg (A \vee B) \leftrightarrow \neg A \wedge \neg B$ : lois de de Morgan
+%   \item $ \neg (A \wedge B) \leftrightarrow \neg A \vee \neg B$ : lois de de Morgan
+%   \item $ A \wedge \top \leftrightarrow A$
+%   \item $ A \vee \bot \leftrightarrow A$
+%   \item $ A \wedge \bot \leftrightarrow \bot$
+%   \item $ A \vee \top \leftrightarrow \top$
+%   \item $ (A \rightarrow B) \leftrightarrow (\neg A \rightarrow \neg B)$ : contraposée
+% \end{enumerate}
+\begin{itemize}
+  \item Tautologies. Les tautologies de la logique du premier ordre
+        sont construites comme suit
+  \item[] \begin{enumerate}
+      \item
+            Soit $A(p_1, \dots , p_n)$ une tautologie de la logique propositionnelle
+      \item Prendre n formules de la logique du premier ordre $B_1, \dots , B_n$
+      \item Substituer la variable propositionnelle $p_1$ par la formule $B_1$, \dots, $p_n$ par la formule $B_n$
+      \item La formule $A(B_1, \dots , B_n)$ est une tautologie de la logique du premier ordre.
+    \end{enumerate}
+  \item Les axiomes des quantificateurs.
+  \item[] \begin{itemize}
+      \item $\exists x, A \leftrightarrow \neg \forall x, \neg A$
+      \item $\forall x,(A \rightarrow B) \rightarrow (A \rightarrow \forall x, B)$ où x est une variable qui n’a pas d’occurrence libres dans A.
+      \item $(\forall x, A) \rightarrow A_{t / x}$ où t est un terme tel que aucune aucune occurrence libre de x ne se trouve dans le champ d'un quantificateur liant une variable de t
+    \end{itemize}
+\end{itemize}
 \newpage
 \subsection{Axiomes}
 \begin{itemize}
@@ -230,8 +247,8 @@ Donc par interpretation des états initiaux:
 on a $(RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b)) \wedge (\neg RD_0(c) \wedge \neg RD_0(f) \wedge \neg RD_0(l) \wedge \neg RD_0(b))\\ $
 L'axiome 3 n'est pas vérifié car :\\
 \begin{align*}
-  RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) &\rightarrow \forall x, S_0(x) \text{ par axiome 1} \\
-  &\rightarrow P = \bot
+  RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) & \rightarrow \forall x, S_0(x) \text{ par axiome 1} \\
+                                                       & \rightarrow P = \bot
 \end{align*}
 L'axiome 4 n'est pas vérifié car $\exists x , RG_0(x)$ par exemple le loup, donc $G = \bot$ \\
 Donc le jeu peut continuer
@@ -247,9 +264,9 @@ $(\forall y , \neg(x = y \vee y = f) \rightarrow RG_1(y)) \wedge (RD_1(x) \wedge
 Démontrons maintenant la condition qui fait d'un chemin une défaite
 
 \begin{align*}
-    \exists z,y, (RG_1(z) \wedge RG_1(y)) \wedge (m(z) =y \vee m(y) =z)\\
-    &\rightarrow \neg S_1(z) \vee \neg S_1(y)\text{par axiome 1}\\
-    &\rightarrow P = \top \text{Par axiome 3}
+  \exists z,y, (RG_1(z) \wedge RG_1(y)) \wedge (m(z) =y \vee m(y) =z) \\
+   & \rightarrow \neg S_1(z) \vee \neg S_1(y)\text{par axiome 1}      \\
+   & \rightarrow P = \top \text{Par axiome 3}
 \end{align*}
 
 Montrons le maintenant pour les cas de notre étude\\
