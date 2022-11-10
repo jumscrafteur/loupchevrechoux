@@ -83,9 +83,8 @@ $ a \leftrightarrow b = (a \rightarrow b) \wedge  (b \rightarrow a)$
 \subsection{Interprétation}
 Domaine d'Interprétation : $D = \{f,l,c,b\}$
 \begin{itemize}
-  \item $\forall x,y , M(x,y) = \neg(x=f) \wedge \neg(x=b) \wedge (x=l \to y=c) \wedge (x=c \to y=b)$
-  \item pour $t$ un entier, $S_t(f) = \top $
-  \item pour $t$ un entier, $S_t(l) = \top $
+  \item $\forall x,y , M(x,y) = \neg(x=f) \wedge \neg(x=b) \wedge (x=l \leftrightarrow y=c) \wedge (x=c \leftrightarrow y=b)$
+  \item $\forall x , S_t(x) = (RG_t(x) \to (\forall y , RG_t(y) \to \neg M(y,x) )) \wedge (RD_t(x) \to (\forall y , RD_t(y) \to \neg M(y,x) )) $
   \item[$ \to $] État initial :
     \begin{itemize}
       \item[$ \to $] Rive Gauche :
@@ -98,9 +97,6 @@ Domaine d'Interprétation : $D = \{f,l,c,b\}$
       \item $ RD_0(l) = \bot $
       \item $ RD_0(c) = \bot $
       \item $ RD_0(b) = \bot $
-      \item[$ \to $] Sécurité
-      \item $ S_0(c) = \top$
-      \item $ S_0(b) = \top$
     \end{itemize}
 
 \end{itemize}
@@ -161,6 +157,8 @@ Soit A, B et C des variables propositionnelles.
         $a_4:= G_t \leftrightarrow RD_t(l) \wedge RD_t(f) \wedge RD_t(c) \wedge RD_t(b) \leftrightarrow  \forall x, RD_t(x)$
   \item On définit une infinité d'axiome représentant l'impossibilité d'etre sur deux rives en même temps:\\
         $a_5 := \forall x ,RG_t(x) \leftrightarrow \neg RD_t(x)$
+  \item Le Loup et le fermier n'ont pas de pédateurs ils sont donc tout le temps en sécurité\\
+        $a_6 := S_t(f) \wedge S_t(l)$
   \item On définit la variation de population des rives à chaque voyage\\
         pour t=2n ,
 \end{itemize}
@@ -257,6 +255,14 @@ on a $(RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b)) \wedge (\neg RD_0(c
 $\leftrightarrow RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b)$ par axiome 5\\
 
 or
+\begin{align*}
+  RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) &
+  \leftrightarrow RG_0(f) \wedge (RG_0(f) \wedge RG_0(c) \wedge RG_0(b) \wedge RG_0(l))                                                                                                           \\
+                                                       & \leftrightarrow [RG_0(f) \wedge RG_0(f)] \wedge [RG_0(f) \wedge RG_0(c)] \wedge [RG_0(f) \wedge RG_0(b)] \wedge [RG_0(f) \wedge RG_0(l)] \\
+                                                       & \leftrightarrow \forall x, RG_0(f) \wedge RG_0(x)                                                                                        \\
+                                                       & \leftrightarrow \forall x, S_0(x) \text{ par axiome 1}                                                                                   \\
+                                                       & \leftrightarrow P_0 = \bot \text{ par axiome 3}
+\end{align*}
 \begin{align*}
   RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) &
   \leftrightarrow RG_0(f) \wedge (RG_0(f) \wedge RG_0(c) \wedge RG_0(b) \wedge RG_0(l))                               \\
