@@ -1,4 +1,4 @@
-\documentclass{article}
+documentclass{article}
 \usepackage{tikz}
 \usepackage{fullpage}
 \usepackage{amsmath,amsfonts,amssymb,stmaryrd}
@@ -284,7 +284,7 @@ Donc le jeu peut continuer
 Pour cette itération il existe quatre chemins possible
 
 Dénotons la structure d'un voyage:\\
-Soit x l'élément qui part avec le fermier (f)\\
+Soit $x$ l'élément qui part avec le fermier (f)\\
 $t$ étant égal à 1 alors $t$ est impair.\\
 Par application de l'axiome $a_7$ on a
 \begin{align*}
@@ -322,7 +322,42 @@ or comme M(y,z) on a d'après $a_1$:\\
 $((\exists y,M(y,z)) \wedge  \neg(\exists y , M(y,z) \wedge ((RG_1(x)\wedge RD_1(y))) \wedge \neg(RD_1(x)\wedge RG_1(y)))) \rightarrow \neg S_1(x)$\\
 D'après $a_3$ on a ainsi $(S_1(x) \wedge \neg P_0) \rightarrow P_1$
 Ainsi, comme $P_1 = \top$ ce chemin mêne à une défaite.\\
+\subparagraph*{Pour t=2:}
 
+Pour cette itération, il n'existe qu'un chemin possible.
 
+Démontrons la structure du voyage:\\
+Soit $x$ l'élément qui part avec le fermier (f).\\
+$t$ étant égal à 2, $t$ est donc paire.\\
+Par application de l'axiome $a_8$ on a:
+\begin{align*}
+    (\forall y, RG_{1}(y) \to RG_{2}(y)) \wedge (\forall z,(RD_{1}(z)) \wedge \neg(x=z \vee z=f)) \rightarrow RD_{2}(z)) \wedge RG_2(f) \wedge RG_2(x)
+\end{align*}
+Il y a donc 2 cas possibles.\\
+\begin{itemize}
+    \item \small Le cas où le fermier décide de revenir au début du jeu en emportant avec lui la chèvre sur la rive gauche: $x$ = chèvre\\
+    \begin{align*}
+        \{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{
+    \end{align*}
+    Par $a_1$ on a $S_0(z)$\\
+    Par $a_3$, on a donc P=$\top$
+    \item Le cas où le fermier repart seul:\\
+    De manière analogue au premier cas, en remplaçant $x$ par fermier on obtient les même résultats par $a_7$ et $a_3$.
+\end{itemize}
+\subparagraph*{Pour $t$=3}
+
+D'après la démonstration précédente (pour tout état similaire à $t$=2)\\
+\begin{align*}
+    RG_2(f) \wedge RG_2(l) \wedge RG_2(b) \wedge RD_2(c)& \to RD_3(c) \wedge RD_3(f) \wedge ((RD_3(l)\wedge RG_3(b))\vee (RD_3(b)\wedge RG_3(l))) \text {par } a_7\\
+                                                        & \leftrightarrow (RD_3(c)\wedge RD_3(f)\wedge (RD_3(l)\wedge RD_3(b)))\\
+                                                        & \vee (RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l)))\\
+                                                        & \vee (RD_3(c) \wedge RD_3(f) \wedge RG_3(b) \wedge RG_3(l))\\
+                                                        & \leftrightarrow S_3(f) \wedge S_3(l) \wedge (RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l))) \text{ par } a_6\\
+                                                        & \leftrightarrow S_3(f) \wedge S_3(l) \wedge ((S_3(c)\wedge S_3(b))\vee (RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l))))\text{ par } a_1\\
+                                                        &\leftrightarrow S_3(f) \wedge S_3(l) \wedge (((S_3(c)\wedge S_3(b))) \vee (S_3(b)\wedge S_3(c)))\\
+                                                        &\leftrightarrow S_3(f) \wedge S_3(l) \wedge (S_3(c)\wedge S_3(b))\\
+                                                        & \leftrightarrow \forall x, S_3(x)\\
+                                                        & \leftrightarrow \neg P_3 \text{ par } a_3
+\end{align*}
 
 \end{document}
