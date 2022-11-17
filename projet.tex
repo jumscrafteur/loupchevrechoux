@@ -1,4 +1,4 @@
-documentclass{article}
+\documentclass{article}
 \usepackage{tikz}
 \usepackage{fullpage}
 \usepackage{amsmath,amsfonts,amssymb,stmaryrd}
@@ -263,11 +263,11 @@ $\leftrightarrow RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b)$ par axiom
 or
 \begin{align*}
   RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) &
-  \leftrightarrow RG_0(f) \wedge (RG_0(f) \wedge RG_0(c) \wedge RG_0(b) \wedge RG_0(l))                                                                                                           \\
-                                                       & \leftrightarrow [RG_0(f) \wedge RG_0(f)] \wedge [RG_0(f) \wedge RG_0(c)] \wedge [RG_0(f) \wedge RG_0(b)] \wedge [RG_0(f) \wedge RG_0(l)] \\
-                                                       & \leftrightarrow \forall x, RG_0(f) \wedge RG_0(x)                                                                                        \\
-                                                       & \leftrightarrow \forall x, S_0(x) \text{ par axiome 1}                                                                                   \\
-                                                       & \leftrightarrow P_0 = \bot \text{ par axiome 3}
+  \leftrightarrow RG_0(f) \wedge (RG_0(f) \wedge RG_0(c) \wedge RG_0(b) \wedge RG_0(l))\\
+& \leftrightarrow [RG_0(f) \wedge RG_0(f)] \wedge [RG_0(f) \wedge RG_0(c)] \wedge [RG_0(f) \wedge RG_0(b)] \wedge [RG_0(f) \wedge RG_0(l)] \\
+& \leftrightarrow \forall x, RG_0(f) \wedge RG_0(x)\\
+& \leftrightarrow \forall x, S_0(x) \text{ par axiome 1} \\
+& \leftrightarrow P_0 = \bot \text{ par axiome 3}
 \end{align*}
 \begin{align*}
   RG_0(c) \wedge RG_0(f) \wedge RG_0(l) \wedge RG_0(b) &
@@ -324,40 +324,109 @@ D'après $a_3$ on a ainsi $(S_1(x) \wedge \neg P_0) \rightarrow P_1$
 Ainsi, comme $P_1 = \top$ ce chemin mêne à une défaite.\\
 \subparagraph*{Pour t=2:}
 
-Pour cette itération, il n'existe qu'un chemin possible.
 
-Démontrons la structure du voyage:\\
-Soit $x$ l'élément qui part avec le fermier (f).\\
-$t$ étant égal à 2, $t$ est donc paire.\\
-Par application de l'axiome $a_8$ on a:
+t étant pair
 \begin{align*}
     (\forall y, RG_{1}(y) \to RG_{2}(y)) \wedge (\forall z,(RD_{1}(z)) \wedge \neg(x=z \vee z=f)) \rightarrow RD_{2}(z)) \wedge RG_2(f) \wedge RG_2(x)
 \end{align*}
-Il y a donc 2 cas possibles.\\
+D'après la démonstration précédente
+
+\begin{align*}
+  RG_1(l) \wedge RG_1(b) \wedge RD_1(f) \wedge RD_1(c) \to RG_2(l) \wedge RG_2(b) \wedge RG_2(f) (RG_2(c) \vee RD_2(c)) \text{Par axiome $a_8$}\\
+\end{align*}
+
+Il y a donc 2 cas possibles(clauses du OU).\\
 \begin{itemize}
-    \item \small Le cas où le fermier décide de revenir au début du jeu en emportant avec lui la chèvre sur la rive gauche: $x$ = chèvre\\
+    \item \small Le cas où le fermier décide de revenir en emportant avec lui la chèvre sur la rive gauche: $x$ = c, or cet état est similaire à celui pour t=0 dont on a déjà fait la démonstration\\
+
+    \item Le cas où le fermier repart seul $x=f$:\\
+    on a alors :
     \begin{align*}
-        \{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{\{
+      RG_2(b) \wedge RG_2(f) \wedge RD_2(c) \wedge RG_2(l) &\leftrightarrow S_2(f) \wedge S_2(l) \wedge (RG_2(b) \wedge RG_2(f) \wedge RD_2(c) \wedge RG_2(l)) \text{par axiome $a_6$}\\
     \end{align*}
-    Par $a_1$ on a $S_0(z)$\\
-    Par $a_3$, on a donc P=$\top$
-    \item Le cas où le fermier repart seul:\\
-    De manière analogue au premier cas, en remplaçant $x$ par fermier on obtient les même résultats par $a_7$ et $a_3$.
+
+Or par axiome 1 $((RG_2(b) \wedge RG_2(f) \to S_2(b)) \wedge ((M(l,c) \wedge RG_2(l)\wedge RD_2(c)) \to S_2(c))$
+
+\begin{align*}
+  &\to  S_2(f) \wedge S_2(l) \wedge S_2(b) \wedge S_2(c)\\
+  &\leftrightarrow \forall y, S_2(y)\\
+  &\leftrightarrow \neg P_2 \text{par axiome $a_3$}
+\end{align*}
+
 \end{itemize}
 \subparagraph*{Pour $t$=3}
+$t$ étant égal à 3 alors $t$ est impair.\\
+Par application de l'axiome $a_7$ on a
+\begin{align*}
+  (\forall y, RD_{2}(y) \to RD_{3}(y)) \wedge (\forall z,(RG_{2}(z)) \wedge \neg(x=z \vee z=f)) \rightarrow RG_3(z)) \wedge RD_3(f) \wedge RD_3(x)
+\end{align*}
 
 D'après la démonstration précédente (pour tout état similaire à $t$=2)\\
 \begin{align*}
     RG_2(f) \wedge RG_2(l) \wedge RG_2(b) \wedge RD_2(c)& \to RD_3(c) \wedge RD_3(f) \wedge ((RD_3(l)\wedge RG_3(b))\vee (RD_3(b)\wedge RG_3(l))) \text {par } a_7\\
-                                                        & \leftrightarrow (RD_3(c)\wedge RD_3(f)\wedge (RD_3(l)\wedge RD_3(b)))\\
-                                                        & \vee (RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l)))\\
-                                                        & \vee (RD_3(c) \wedge RD_3(f) \wedge RG_3(b) \wedge RG_3(l))\\
-                                                        & \leftrightarrow S_3(f) \wedge S_3(l) \wedge (RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l))) \text{ par } a_6\\
-                                                        & \leftrightarrow S_3(f) \wedge S_3(l) \wedge ((S_3(c)\wedge S_3(b))\vee (RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l))))\text{ par } a_1\\
-                                                        &\leftrightarrow S_3(f) \wedge S_3(l) \wedge (((S_3(c)\wedge S_3(b))) \vee (S_3(b)\wedge S_3(c)))\\
-                                                        &\leftrightarrow S_3(f) \wedge S_3(l) \wedge (S_3(c)\wedge S_3(b))\\
-                                                        & \leftrightarrow \forall x, S_3(x)\\
-                                                        & \leftrightarrow \neg P_3 \text{ par } a_3
+    & \leftrightarrow (RD_3(c)\wedge RD_3(f)\wedge (RG_3(l)\wedge RD_3(b)))\\
+    & \hphantom{aaaaa}\vee (RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l)))\\
+    & \hphantom{aaaaa}\vee (RD_3(c) \wedge RG_3(f) \wedge RG_3(b) \wedge RG_3(l))\\
+    & \leftrightarrow S_3(f) \wedge S_3(l) \wedge [(RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l)))  \\
+    & \hphantom{aaaaa} \vee (RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l)))\\
+    & \hphantom{aaaaa}\vee (RD_3(c) \wedge RD_3(f) \wedge RG_3(b) \wedge RG_3(l))]\text{ par }a_6\\
+    & \leftrightarrow S_3(f) \wedge S_3(l) \wedge ((S_3(c)\wedge S_3(b))\\
+    &\hphantom{aaaaaaaaaaaaaaaa}\vee (RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l)))\\
+    &\hphantom{aaaaaaaaaaaaaaaa}\vee (RD_3(c) \wedge RD_3(f) \wedge RG_3(b) \wedge RG_3(l)))\text{ par } a_1\\
+    &\leftrightarrow S_3(f) \wedge S_3(l) \wedge (((S_3(c)\wedge S_3(b))) \vee (S_3(b)\wedge S_3(c)),\wedge (((S_3(c)\wedge S_3(b)))\text{ par } a_1\\
+    &\leftrightarrow S_3(f) \wedge S_3(l) \wedge (S_3(c)\wedge S_3(b))\\
+    & \leftrightarrow \forall x, S_3(x)\\
+    & \leftrightarrow \neg P_3 \text{ par } a_3
 \end{align*}
+
+\begin{itemize}
+  \item pour le premier chemin, $RG_3(l) \to \neg G_3$ par $a_4$
+  \item pour le second chemin,$RG_3(b) \to \neg G_3$ par $a_4$
+  \item pour le dernier chemin(retour en arriere),$RG_3(l) \to \neg G_3$ par $a_4$
+\end{itemize}
+Aucun chemin ne mène à une défaite, un chemin(une clause du ou) ne sera pas traité car il retourne une situation similaire à celle de t=2
+
+\newpage
+\subparagraph*{Pour $t$=4}
+D'après la démonstration précédente (pour t=3 ou autre état similaire),3 états sont disponnible depuis t=3\\
+
+$RG_3(l) \wedge RG_3(b) \wedge RD_3(f) \wedge RD_3(c)$\\
+or cet état est similaire à $t=1$ il ne sera pas retraité\\
+Les deux autre état offrant deux branches de chemins differentes ils seront traités séparément
+
+t étant pair
+\begin{align*}
+    (\forall y, RG_{3}(y) \to RG_{4}(y)) \wedge (\forall z,(RD_{3}(z)) \wedge \neg(x=z \vee z=f)) \rightarrow RD_{4}(z)) \wedge RG_4(f) \wedge RG_4(x)
+\end{align*}
+
+\begin{enumerate}
+  \item
+\begin{align*}
+      RG_3(b) \wedge RD_3(f) \wedge RD_3(c) \wedge RD_3(l)&\to RG_4(b) \wedge RG_4(f) \wedge ((RD_4(l)\wedge RD_4(c))\vee (RD_4(l)\wedge RG_4(c))\vee(RG_4(l)\wedge RD_4(c)))\\
+      &\leftrightarrow (( RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RD_4(c))\text{distributivité du $\wedge$ sur le $\vee$}\\
+      & \hphantom{aaaaa} \vee (RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RG_4(c))\\
+      & \hphantom{aaaaa} \vee (RG_4(f) \wedge RG_4(b) \wedge RG_4(l) \wedge RD_4(c)))\text{forme normale disjonctive}\\
+      &\leftrightarrow S_4(f) \wedge S_4(l) \wedge (( RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RD_4(c))\\
+      & \hphantom{aaaaaaaaaaaaa} \vee (RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RG_4(c))\\
+      & \hphantom{aaaaaaaaaaaaa} \vee (RG_4(f) \wedge RG_4(b) \wedge RG_4(l) \wedge RD_4(c)))\text{par axiome 6}\\
+\end{align*}
+Chaque disjonction représentant un chemin possible démontrons les quelles mènent à une défaite
+  \begin{enumerate}
+    \item Dans cet état (formule traduisant les déductions pour un état donné):
+    \begin{align*}
+      [M(l,c) \to (\neg(\forall x, \neg M(x,c))\wedge (M(l,c)\wedge RD_4(c)\wedge \neg RG_4(l)) \wedge ((RG_4(F) \wedge RD_4(c))\to \neg ((RG_4(c) \wedge RG_4(f))\vee (RD_4(c)\wedge RD_4(f)))))]\\
+      &\leftrightarrow \neg S_4(c) \text{par axiome 1}\\
+      &\leftrightarrow \exists y,\neg S_4(y)\\
+      &\leftrightarrow P_4
+    \end{align*}
+    \item Dans cet état (formule traduisant les déductions pour un état donné)
+    \begin{align*}
+      (RG_4(c)\wedge RG_4(f)\wedge RG_4(b) \to (S_4(b) \wedge S_4(c))) \text{par axiome 1 (une clause de sécurité est vérifiée)}\\
+      &\leftrightarrow (RG_4(c)\wedge RG_4(f)\wedge RG_4(b) \to (S_4(b) \wedge S_4(c))) \wedge S_4(f) \wedge S_4(l)\text{par axiome 6}\\
+      &\leftrightarrow \forall y,S_4(y)\\
+      &\leftrightarrow \neg P_4
+    \end{align*}
+  \end{enumerate}
+\end{enumerate}
 
 \end{document}
