@@ -4,7 +4,7 @@
 \usepackage{amsmath,amsfonts,amssymb,stmaryrd}
 
 \title{Projet de Logique: Loup Chèvre Choux}
-\author{Waxin Alban, Le Meur Quentin, Laurin Guillaume, Sansané Hugo, Said Yacine}
+\author{Waxin Alban, Le Meur Quentin, Laurun Guillaume, Sansané Hugo, Said Yacine}
 
 \setlength{\topmargin}{-1.5cm}
 \setlength{\textheight}{25cm}
@@ -84,7 +84,7 @@ $ a \leftrightarrow b = (a \rightarrow b) \wedge  (b \rightarrow a)$
 Domaine d'Interprétation : $D = \{f,l,c,b\}$
 \begin{itemize}
   \item $\forall x,y , M(x,y) = \neg(x=f) \wedge \neg(x=b) \wedge (x=l \leftrightarrow y=c) \wedge (x=c \leftrightarrow y=b)$
-  \item $\forall x , S_t(x) = (RG_t(x) \to (\forall y , RG_t(y) \to \neg M(y,x) )) \wedge (RD_t(x) \to (\forall y , RD_t(y) \to \neg M(y,x) )) $
+  \item $\forall x , S_t(x) = (RG_t(x) \to (\forall y , RG_t(y) \to \neg M(y,x) )) \vee (RD_t(x) \to (\forall y , RD_t(y) \to \neg M(y,x) )) $
   \item[$ \to $] État initial :
     \begin{itemize}
       \item[$ \to $] Rive Gauche :
@@ -104,25 +104,7 @@ Domaine d'Interprétation : $D = \{f,l,c,b\}$
 
 \subsection{Axiomatisation}
 Soit A, B et C des variables propositionnelles.
-% \begin{enumerate}
-%   \item $ (A \wedge A) \leftrightarrow  A$ : idempotence
-%   \item $ (A \vee A) \leftrightarrow  A$ : idempotence
-%   \item $ (A \wedge B) \leftrightarrow  (B \wedge A)$ : commutativité
-%   \item $ (A \vee B) \leftrightarrow  (B \vee A)$ : commutativité
-%   \item $ (A \wedge (B \wedge C)) \leftrightarrow  ((A \wedge B) \wedge C)$ : associativité
-%   \item $ (A \vee (B \vee C)) \leftrightarrow  ((A \vee B) \vee C)$ : associativité
-%   \item $ ((A \wedge (B \vee C)) \leftrightarrow ((A \wedge B) \vee (A \wedge C)))$ : distributivité
-%   \item $ ((A \vee (B \wedge C)) \leftrightarrow ((A \vee B) \wedge (A \vee C))) $ : distributivité
-%   \item $ (A \wedge (A \vee B)) \leftrightarrow  A$ : absorption
-%   \item $ (A \vee (A \wedge B)) \leftrightarrow  A$ : absorption
-%   \item $ \neg (A \vee B) \leftrightarrow \neg A \wedge \neg B$ : lois de de Morgan
-%   \item $ \neg (A \wedge B) \leftrightarrow \neg A \vee \neg B$ : lois de de Morgan
-%   \item $ A \wedge \top \leftrightarrow A$
-%   \item $ A \vee \bot \leftrightarrow A$
-%   \item $ A \wedge \bot \leftrightarrow \bot$
-%   \item $ A \vee \top \leftrightarrow \top$
-%   \item $ (A \rightarrow B) \leftrightarrow (\neg A \rightarrow \neg B)$ : contraposée
-% \end{enumerate}
+
 \begin{itemize}
   \item Tautologies. Les tautologies de la logique du premier ordre
         sont construites comme suit
@@ -364,19 +346,19 @@ Par application de l'axiome $a_7$ on a
 D'après la démonstration précédente (pour tout état similaire à $t$=2)\\
 \begin{align*}
     RG_2(f) \wedge RG_2(l) \wedge RG_2(b) \wedge RD_2(c)& \to RD_3(c) \wedge RD_3(f) \wedge ((RD_3(l)\wedge RG_3(b))\vee (RD_3(b)\wedge RG_3(l))) \text {par } a_7\\
-    & \leftrightarrow (RD_3(c)\wedge RD_3(f)\wedge (RG_3(l)\wedge RD_3(b)))\\
+    \leftrightarrow RG_2(f) \wedge RG_2(l) \wedge RG_2(b) \wedge RD_2(c)& \to (RD_3(c)\wedge RD_3(f)\wedge (RG_3(l)\wedge RD_3(b)))\\
     & \hphantom{aaaaa}\vee (RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l)))\\
     & \hphantom{aaaaa}\vee (RD_3(c) \wedge RG_3(f) \wedge RG_3(b) \wedge RG_3(l))\\
-    & \leftrightarrow S_3(f) \wedge S_3(l) \wedge [(RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l)))  \\
+    \leftrightarrow RG_2(f) \wedge RG_2(l) \wedge RG_2(b) \wedge RD_2(c)& \to S_3(f) \wedge S_3(l) \wedge [(RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l)))  \\
     & \hphantom{aaaaa} \vee (RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l)))\\
     & \hphantom{aaaaa}\vee (RD_3(c) \wedge RD_3(f) \wedge RG_3(b) \wedge RG_3(l))]\text{ par }a_6\\
-    & \leftrightarrow S_3(f) \wedge S_3(l) \wedge ((S_3(c)\wedge S_3(b))\\
+     \leftrightarrow RG_2(f) \wedge RG_2(l) \wedge RG_2(b) \wedge RD_2(c)& \to S_3(f) \wedge S_3(l) \wedge ((S_3(c)\wedge S_3(b))\\
     &\hphantom{aaaaaaaaaaaaaaaa}\vee (RD_3(c)\wedge RD_3(f)\wedge (RD_3(b)\wedge RG_3(l)))\\
     &\hphantom{aaaaaaaaaaaaaaaa}\vee (RD_3(c) \wedge RD_3(f) \wedge RG_3(b) \wedge RG_3(l)))\text{ par } a_1\\
-    &\leftrightarrow S_3(f) \wedge S_3(l) \wedge (((S_3(c)\wedge S_3(b))) \vee (S_3(b)\wedge S_3(c)),\wedge (((S_3(c)\wedge S_3(b)))\text{ par } a_1\\
-    &\leftrightarrow S_3(f) \wedge S_3(l) \wedge (S_3(c)\wedge S_3(b))\\
-    & \leftrightarrow \forall x, S_3(x)\\
-    & \leftrightarrow \neg P_3 \text{ par } a_3
+    \leftrightarrow RG_2(f) \wedge RG_2(l) \wedge RG_2(b) \wedge RD_2(c)& \to S_3(f) \wedge S_3(l) \wedge (((S_3(c)\wedge S_3(b))) \vee (S_3(b)\wedge S_3(c)),\wedge (((S_3(c)\wedge S_3(b)))\text{ par } a_1\\
+    \leftrightarrow RG_2(f) \wedge RG_2(l) \wedge RG_2(b) \wedge RD_2(c)& \to S_3(f) \wedge S_3(l) \wedge (S_3(c)\wedge S_3(b))\\
+    \leftrightarrow RG_2(f) \wedge RG_2(l) \wedge RG_2(b) \wedge RD_2(c)& \to \forall x, S_3(x)\\
+    \leftrightarrow RG_2(f) \wedge RG_2(l) \wedge RG_2(b) \wedge RD_2(c)& \to \neg P_3 \text{ par } a_3
 \end{align*}
 
 \begin{itemize}
@@ -403,10 +385,10 @@ t étant pair
   \item
 \begin{align*}
       RG_3(b) \wedge RD_3(f) \wedge RD_3(c) \wedge RD_3(l)&\to RG_4(b) \wedge RG_4(f) \wedge ((RD_4(l)\wedge RD_4(c))\vee (RD_4(l)\wedge RG_4(c))\vee(RG_4(l)\wedge RD_4(c)))\\
-      &\leftrightarrow (( RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RD_4(c))\text{distributivité du $\wedge$ sur le $\vee$}\\
+      \leftrightarrow RG_3(b) \wedge RD_3(f) \wedge RD_3(c) \wedge RD_3(l) &\to (( RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RD_4(c))\text{distributivité du $\wedge$ sur le $\vee$}\\
       & \hphantom{aaaaa} \vee (RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RG_4(c))\\
       & \hphantom{aaaaa} \vee (RG_4(f) \wedge RG_4(b) \wedge RG_4(l) \wedge RD_4(c)))\text{forme normale disjonctive}\\
-      &\leftrightarrow S_4(f) \wedge S_4(l) \wedge (( RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RD_4(c))\\
+      \leftrightarrow RG_3(b) \wedge RD_3(f) \wedge RD_3(c) \wedge RD_3(l) &\to S_4(f) \wedge S_4(l) \wedge (( RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RD_4(c))\\
       & \hphantom{aaaaaaaaaaaaa} \vee (RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RG_4(c))\\
       & \hphantom{aaaaaaaaaaaaa} \vee (RG_4(f) \wedge RG_4(b) \wedge RG_4(l) \wedge RD_4(c)))\text{par axiome 6}\\
 \end{align*}
@@ -414,14 +396,15 @@ Chaque disjonction représentant un chemin possible démontrons les quelles mèn
   \begin{enumerate}
     \item Dans cet état (formule traduisant les déductions pour un état donné):
     \begin{align*}
-      [M(l,c) \to (\neg(\forall x, \neg M(x,c))\wedge (M(l,c)\wedge RD_4(c)\wedge \neg RG_4(l)) \wedge ((RG_4(F) \wedge RD_4(c))\to \neg ((RG_4(c) \wedge RG_4(f))\vee (RD_4(c)\wedge RD_4(f)))))]\\
+      &[M(l,c) \to (\neg(\forall y, \neg M(y,c))\wedge (M(l,c)\wedge RD_4(c)\wedge \neg RG_4(l)) \\
+      &\hphantom{aa}  \wedge ((RG_4(F) \wedge RD_4(c))\to \neg ((RG_4(c) \wedge RG_4(f))\vee (RD_4(c)\wedge RD_4(f))))]\\
       &\leftrightarrow \neg S_4(c) \text{par axiome 1}\\
       &\leftrightarrow \exists y,\neg S_4(y)\\
       &\leftrightarrow P_4
     \end{align*}
     \item Dans cet état (formule traduisant les déductions pour un état donné)
     \begin{align*}
-      (RG_4(c)\wedge RG_4(f)\wedge RG_4(b) \to (S_4(b) \wedge S_4(c))) \text{par axiome 1 (une clause de sécurité est vérifiée)}\\
+      &(RG_4(c)\wedge RG_4(f)\wedge RG_4(b) \to (S_4(b) \wedge S_4(c))) \text{ par axiome 1 (une clause de sécurité est vérifiée)}\\
       &\leftrightarrow (RG_4(c)\wedge RG_4(f)\wedge RG_4(b) \to (S_4(b) \wedge S_4(c))) \wedge S_4(f) \wedge S_4(l)\text{par axiome 6}\\
       &\leftrightarrow \forall y,S_4(y)\\
       &\leftrightarrow \neg P_4
@@ -430,3 +413,6 @@ Chaque disjonction représentant un chemin possible démontrons les quelles mèn
 \end{enumerate}
 
 \end{document}
+%TODO : RAJOUTER NON VICTOIRE POUR T2 T4 (ptet T1)
+%TODO : T4 decale une ligne
+%TODO : Precisez quel est quel etat
