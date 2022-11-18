@@ -235,7 +235,7 @@ Soit A, B et C des variables propositionnelles.
 
 \section*{Preuve des chemins gagnants}
 
-Dans cette étude une fois que $P_t = \top$ on considère la suite du chemin comme nulle
+Dans cette étude une fois que $P_t = \top$ on considère la suite du chemin comme nulle, on considérera alors pour pouvoir appliquer l'axiome 3 que $\forall t, \neg P_{t-1}$ t apparaissant dans les démonstrations
 Donc par interpretation des états initiaux:
 
 \subparagraph*{Pour t = 0:}
@@ -336,6 +336,7 @@ Or par axiome 1 $((RG_2(b) \wedge RG_2(f) \to S_2(b)) \wedge ((M(l,c) \wedge RG_
 \end{align*}
 
 \end{itemize}
+    Non victoire : $RG_2(b) \to \neg G_2$ par axiome 2
 \subparagraph*{Pour $t$=3}
 $t$ étant égal à 3 alors $t$ est impair.\\
 Par application de l'axiome $a_7$ on a
@@ -382,7 +383,7 @@ t étant pair
 \end{align*}
 
 \begin{enumerate}
-  \item
+  \item Première branche possible
 \begin{align*}
       RG_3(b) \wedge RD_3(f) \wedge RD_3(c) \wedge RD_3(l)&\to RG_4(b) \wedge RG_4(f) \wedge ((RD_4(l)\wedge RD_4(c))\vee (RD_4(l)\wedge RG_4(c))\vee(RG_4(l)\wedge RD_4(c)))\\
       \leftrightarrow RG_3(b) \wedge RD_3(f) \wedge RD_3(c) \wedge RD_3(l) &\to (( RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RD_4(c))\text{distributivité du $\wedge$ sur le $\vee$}\\
@@ -394,25 +395,182 @@ t étant pair
 \end{align*}
 Chaque disjonction représentant un chemin possible démontrons les quelles mènent à une défaite
   \begin{enumerate}
-    \item Dans cet état (formule traduisant les déductions pour un état donné):
+    \item Dans l'état : $RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RD_4(c)$
     \begin{align*}
       &[M(l,c) \to (\neg(\forall y, \neg M(y,c))\wedge (M(l,c)\wedge RD_4(c)\wedge \neg RG_4(l)) \\
-      &\hphantom{aa}  \wedge ((RG_4(F) \wedge RD_4(c))\to \neg ((RG_4(c) \wedge RG_4(f))\vee (RD_4(c)\wedge RD_4(f))))]\\
+      &\hphantom{aa}  \wedge ((RG_4(f) \wedge RD_4(c))\to \neg ((RG_4(c) \wedge RG_4(f))\vee (RD_4(c)\wedge RD_4(f))))]\\
       &\leftrightarrow \neg S_4(c) \text{par axiome 1}\\
       &\leftrightarrow \exists y,\neg S_4(y)\\
       &\leftrightarrow P_4
     \end{align*}
-    \item Dans cet état (formule traduisant les déductions pour un état donné)
+
+    Non victoire : $P_4 \to \neg G_4$ par axiome 2
+    \item Dans l'état : $RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RG_4(c)$
     \begin{align*}
       &(RG_4(c)\wedge RG_4(f)\wedge RG_4(b) \to (S_4(b) \wedge S_4(c))) \text{ par axiome 1 (une clause de sécurité est vérifiée)}\\
       &\leftrightarrow (RG_4(c)\wedge RG_4(f)\wedge RG_4(b) \to (S_4(b) \wedge S_4(c))) \wedge S_4(f) \wedge S_4(l)\text{par axiome 6}\\
       &\leftrightarrow \forall y,S_4(y)\\
       &\leftrightarrow \neg P_4
     \end{align*}
+
+    Non victoire : $RG_4(c) \to \neg G_4$ par axiome 2
+  \end{enumerate}
+  \item
+  \begin{align*}
+        RG_3(l) \wedge RD_3(f) \wedge RD_3(b) \wedge RD_3(c)&\to RG_4(l) \wedge RG_4(f) \wedge ((RD_4(b)\wedge RD_4(c))\vee (RD_4(b)\wedge RG_4(c))\vee(RG_4(b)\wedge RD_4(c)))\\
+        \leftrightarrow RG_3(l) \wedge RD_3(f) \wedge RD_3(b) \wedge RD_3(c) &\to (( RG_4(f) \wedge RG_4(l) \wedge RD_4(b) \wedge RD_4(c))\text{distributivité du $\wedge$ sur le $\vee$}\\
+        & \hphantom{aaaaa} \vee (RG_4(f) \wedge RG_4(l) \wedge RD_4(b) \wedge RG_4(c))\\
+        & \hphantom{aaaaa} \vee (RG_4(f) \wedge RG_4(l) \wedge RG_4(b) \wedge RD_4(c)))\text{forme normale disjonctive}
+  \end{align*}
+  \begin{enumerate}
+    \item Dans l'état : $RG_4(l) \wedge RG_4(f) \wedge RD_4(b) \wedge RD_4(c)$
+    \begin{align*}
+      &[M(c,b) \to (\neg(\forall y, \neg M(y,b))\wedge (M(c,b)\wedge RD_4(c)\wedge \neg RG_4(b)) \\
+      &\hphantom{aa}  \wedge ((RG_4(f) \wedge RD_4(b))\to \neg ((RG_4(b) \wedge RG_4(f))\vee (RD_4(b)\wedge RD_4(f))))]\\
+      &\leftrightarrow \neg S_4(b) \text{par axiome 1}\\
+      &\leftrightarrow \exists y,\neg S_4(y)\\
+      &\leftrightarrow P_4
+    \end{align*}
+
+    Non victoire : $P_4 \to \neg G_4$ par axiome 2
+    \item Dans l'état : $RG_4(f) \wedge RG_4(b) \wedge RD_4(l) \wedge RG_4(c)$
+    \begin{align*}
+      &(RG_4(c)\wedge RG_4(f) \to  S_4(c)) \wedge ((M(c,b) \wedge RG_4(c)\wedge RD_4(b))\to S_4(b)) \text{ par axiome 1 (une clause de sécurité est vérifiée)}\\
+      &\leftrightarrow (RG_4(c)\wedge RG_4(f) \to  S_4(c)) \wedge ((M(c,b) \wedge RG_4(c)\wedge RD_4(b))\to S_4(b)) \wedge S_4(f) \wedge S_4(l)\text{par axiome 6}\\
+      &\leftrightarrow \forall y,S_4(y)\\
+      &\leftrightarrow \neg P_4
+    \end{align*}
+
+    Non victoire : $RG_4(c) \to \neg G_4$ par axiome 2
   \end{enumerate}
 \end{enumerate}
 
+\subparagraph*{Pour $t$=5}
+D'après la démonstration précédente (pour t=4 ou autre état similaire)\\
+t étant impair
+\begin{align*}
+    (\forall y, RD_{4}(y) \to RD_{5}(y)) \wedge (\forall z,(RG_{4}(z)) \wedge \neg(x=z \vee z=f)) \rightarrow RG_5(z)) \wedge RD_5(f) \wedge RD_5(x)
+\end{align*}
+\begin{enumerate}
+\item Première branche possible
+  \begin{align*}
+        RG_4(b) \wedge RG_4(f) \wedge RG_4(c) \wedge RD_4(l)&\to RD_5(l) \wedge RD_5(f) \wedge ((RG_5(b)\wedge RD_5(c))\\
+        & \hphantom{aaaaa} \vee (RD_5(b)\wedge RG_5(c)) \vee(RG_5(b)\wedge RD_5(c)))\\
+        \leftrightarrow RG_4(b) \wedge RG_4(f) \wedge RG_4(c) \wedge RD_4(l) &\to (( RD_5(l) \wedge RD_5(f) \wedge RG_5(b) \wedge RG_5(c))\text{distributivité du $\wedge$ sur le $\vee$}\\
+        & \hphantom{aaaaa} \vee (RD_5(l) \wedge RD_5(f) \wedge RD_5(b) \wedge RG_5(c))\\
+        & \hphantom{aaaaa} \vee (RD_5(l) \wedge RD_5(f) \wedge RD_5(c) \wedge RG_5(b)))\text{forme normale disjonctive}\\
+  \end{align*}
+
+
+Parmis ces trois chemins on ne prendra pas en compte le chemin ou le fermier ne part qu'avec la chèvre car c'est un retour à un état similaire à t = 3
+
+Il n'est pas necessaire de redémontrer les cas possibles ici, en effet par symétrie de la définition de $S_t(y)$, échanger les berges d'un état ne change pas les valeur de sécurité des entités dans ce dernier
+Dans nos cas:
+\begin{enumerate}
+  \item  l'état $RG_5(b) \wedge RG_5(c) \wedge RD_5(f) \wedge RD_5(l)$ est le symétrique du cas a) de la branche deux de l'itération t = 4 qui donnait $\neg S_4(b)$\\
+  D'ou
+  \begin{align*}
+    RG_5(b) \wedge RG_5(c) \wedge RD_5(f) \wedge RD_5(l) &\to \neg S_5(b)\\
+    \leftrightarrow RG_5(b) \wedge RG_5(c) \wedge RD_5(f) \wedge RD_5(l) &\to \exists y, \neg S_5(y)\\
+    \leftrightarrow RG_5(b) \wedge RG_5(c) \wedge RD_5(f) \wedge RD_5(l) &\to P_5 \text{ par axiome 3}
+  \end{align*}
+  Et $P_5 \to \neg G_5$ par axiome 2
+  \item  l'état $RG_5(c) \wedge RD_5(b) \wedge RD_5(f) \wedge RD_5(l)$ est le symétrique de l'état résultant de t=2 qui donnait $\forall y, S_2(y)$
+  D'ou
+  \begin{align*}
+    RG_5(c) \wedge RD_5(b) \wedge RD_5(f) \wedge RD_5(l) &\to \forall y, S_2(y)\\
+    \leftrightarrow RG_5(c) \wedge RD_5(b) \wedge RD_5(f) \wedge RD_5(l) &\to \neg P_5 \text{ par axiome 3}
+  \end{align*}
+  Et $RG_5(c) \to \neg G_5$ par axiome 2
+\end{enumerate}
+
+\item Seconde branche possible
+  \begin{align*}
+        RG_4(l) \wedge RG_4(f) \wedge RG_4(c) \wedge RD_4(b)&\to RD_5(b) \wedge RD_5(f) \wedge ((RG_5(l)\wedge RD_5(c))\\
+        & \hphantom{aaaaa} \vee (RD_5(l)\wedge RG_5(c)) \vee(RG_5(l)\wedge RG_5(c)))\\
+        \leftrightarrow RG_4(l) \wedge RG_4(f) \wedge RG_4(c) \wedge RD_4(b) &\to (( RD_5(b) \wedge RD_5(f) \wedge RG_5(l) \wedge RG_5(c))\text{distributivité du $\wedge$ sur le $\vee$}\\
+        & \hphantom{aaaaa} \vee (RD_5(b) \wedge RD_5(f) \wedge RD_5(l) \wedge RG_5(c))\\
+        & \hphantom{aaaaa} \vee (RG_5(l) \wedge RD_5(f) \wedge RD_5(b) \wedge RD_5(c)))\text{forme normale disjonctive}\\
+  \end{align*}
+
+
+Parmis ces trois chemins on ne prendra pas en compte le chemin ou le fermier ne part qu'avec la chèvre car c'est un retour à un état similaire à t = 3
+
+Il n'est pas necessaire de redemontrer les cas possible ici, en effet par symétrie de la définition de $S_t(y)$, échanger les berges d'un état ne change pas les valeur de sécurité des entités dans ce dernier
+Dans nos cas:
+\begin{enumerate}
+  \item  l'état $RG_5(l) \wedge RG_5(c) \wedge RD_5(f) \wedge RD_5(b)$ est le symétrique du cas a) de la branche 1 de l'itération t = 4 qui donnait $\neg S_4(c)$\\
+  D'ou
+  \begin{align*}
+    RG_5(l) \wedge RG_5(c) \wedge RD_5(f) \wedge RD_5(b) &\to \neg S_5(c)\\
+    \leftrightarrow RG_5(l) \wedge RG_5(c) \wedge RD_5(f) \wedge RD_5(b) &\to \exists y, \neg S_5(y)\\
+    \leftrightarrow RG_5(l) \wedge RG_5(c) \wedge RD_5(f) \wedge RD_5(b) &\to P_5 \text{ par axiome 3}
+  \end{align*}
+  Et $P_5 \to \neg G_5$ par axiome 2
+  \item  l'état $RG_5(c) \wedge RD_5(b) \wedge RD_5(f) \wedge RD_5(l)$ est le symétrique de l'état résultant de t=2 qui donnait $\forall y, S_2(y)$
+  D'ou
+  \begin{align*}
+    RG_5(c) \wedge RD_5(b) \wedge RD_5(f) \wedge RD_5(l) &\to \forall y, S_2(y)\\
+    \leftrightarrow RG_5(c) \wedge RD_5(b) \wedge RD_5(f) \wedge RD_5(l) &\to \neg P_5 \text{ par axiome 3}
+  \end{align*}
+  Et $RG_5(c) \to \neg G_5$ par axiome 2
+\end{enumerate}
+\end{enumerate}
+
+\subparagraph*{Pour $t$=6}
+t étant pair
+\begin{align*}
+    (\forall y, RG_{5}(y) \to RG_{6}(y)) \wedge (\forall z,(RD_{5}(z)) \wedge \neg(x=z \vee z=f)) \rightarrow RD_{6}(z)) \wedge RG_6(f) \wedge RG_6(x)
+\end{align*} par axiome $a_8$\\
+
+D'après la démonstration précédente (pour t=5 ou autre état similaire),3 états sont disponnible depuis t=5\\ par formule précédente:
+\begin{align*}
+  RG_5(c) \wedge RD_5(l) \wedge RD_5(f) \wedge RD_5(b)&\to RG_6(c) \wedge RG_6(f) \wedge ((RD_6(l)\wedge RD_6(b))\\
+  & \hphantom{aaaaa} \vee (RD_6(l)\wedge RG_6(b)) \vee(RG_6(l)\wedge RD_6(b)))\\
+  \leftrightarrow RG_5(c) \wedge RD_5(l) \wedge RD_5(f) \wedge RD_5(b) &\to (( RD_6(b) \wedge RD_6(l) \wedge RG_6(f) \wedge RG_6(c))\text{distributivité du $\wedge$ sur le $\vee$}\\
+  & \hphantom{aaaaa} \vee (RD_6(l) \wedge RG_6(f) \wedge RG_6(b) \wedge RG_6(c))\\
+  & \hphantom{aaaaa} \vee (RG_6(l) \wedge RG_6(f) \wedge RD_6(b) \wedge RG_6(c))\text{forme normale disjonctive}\\
+\end{align*}
+
+Les cas $RD_6(l) \wedge RG_6(f) \wedge RG_6(b) \wedge RG_6(c)$ et $RG_6(l) \wedge RG_6(f) \wedge RD_6(b) \wedge RG_6(c)$ sont des retours en arrière vers des états similaire à ceux de t=5 donc on ne les redémontrera pas
+
+Et le cas $RD_6(b) \wedge RD_6(l) \wedge RG_6(f) \wedge RG_6(c)$ est le symétrique de l'unique état en t = 1 qui ne donne pas une défaite. et il donnait $\forall y, S_1(y)$
+
+D'ou
+\begin{align*}
+  RD_6(b) \wedge RD_6(l) \wedge RG_6(f) \wedge RG_6(c) &\to \forall y, S_6(y)\\
+  \leftrightarrow RD_6(b) \wedge RD_6(l) \wedge RG_6(f) \wedge RG_6(c) &\to \neg P_6 \text{ par axiome 3}
+\end{align*}
+Et $RG_6(c) \to \neg G_6$ par axiome 2
+
+\subparagraph*{Pour $t$=7}
+
+D'après la démonstration précédente (pour t=6 ou autre état similaire)\\
+t étant impair
+\begin{align*}
+    (\forall y, RD_6(y) \to RD_{7}(y)) \wedge (\forall z,(RG_6(z)) \wedge \neg(x=z \vee z=f)) \rightarrow RG_7(z)) \wedge RD_7(f) \wedge RD_7(x)
+\end{align*}
+
+\begin{align*}
+  RG_6(c) \wedge RD_6(l) \wedge RG_6(f) \wedge RD_6(b) &\to ((RD_6(b) \wedge RD_6(l) \wedge RD_6(f) \wedge RD_6(c)) \vee (RD_6(b) \wedge RD_6(l) \wedge RD_6(f) \wedge RG_6(c)))\\
+\end{align*}
+
+Or le cas $RD_6(b) \wedge RD_6(l) \wedge RD_6(f) \wedge RG_6(c)$ es tun retour à un état similaire à la démonstration de t=6 on ne le redémontrera pas \\
+
+et le cas $RD_6(b) \wedge RD_6(l) \wedge RD_6(f) \wedge RD_6(c)$ est le symétrique aux cas similaires à t = 0 qui donnait $\forall y, S_0(y)$
+
+D'ou
+\begin{align*}
+  RD_7(b) \wedge RD_7(l) \wedge RD_7(f) \wedge RD_7(c) &\to \forall y, S_7(y)\\
+  \leftrightarrow RD_7(b) \wedge RD_7(l) \wedge RD_7(f) \wedge RD_7(c) &\to \neg P_7 \text{ par axiome 3}
+\end{align*}
+
+Deplus $RD_7(b) \wedge RD_7(l) \wedge RD_7(f) \wedge RD_7(c) \wedge \neg P_7 \to G_7$ par axiomes 2 et 4
+
+\section{Conclusion}
+
+La logique choisi permet bien de démontrer l'existence d'une solution à cette énigme et une application étape par étape permet de déterminer quels chemins mennent à un echec et lesquels aboutissent . En adaptant legerement cette logique notamment autour du predicat M(x,y) il serait tout aussi possible d'établir une preuve de terminaison d'autre énigmes similaire telles que l'enigme des quatres maris jalloux. La meme synthaxe, sémantique et définition est utilisable mais il faudrait adapter certains prédicats et axiomes
+
 \end{document}
-%TODO : RAJOUTER NON VICTOIRE POUR T2 T4 (ptet T1)
 %TODO : T4 decale une ligne
-%TODO : Precisez quel est quel etat
+%TODO : Nettoyer un peu l'allure et rajouter des phrases d'explication
